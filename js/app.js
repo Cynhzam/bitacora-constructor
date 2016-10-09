@@ -161,6 +161,9 @@ window.addEventListener("load", cargarPagina);
 		boxPubli.appendChild(btnEliminar);
 
 		btnEliminar.addEventListener("click", cerrar);
+
+		titulo = "";
+		texto = "";
 	}
 
 	function fechaPubli(){
