@@ -1,7 +1,15 @@
-window.addEventListener("load", function(){
+window.addEventListener("load", cargarPagina);
+
 	var boxSelector = document.getElementById("boxSelector");
-	var selector = document.getElementById("select");
-	selector.addEventListener("change", function(){
+	var selector = document.getElementById("menu");
+	var container = document.createElement("div");
+	var containerPublicacion = document.createElement("div");
+
+	function cargarPagina(){
+		selector.addEventListener("change", seleccionarOpcion);
+	}
+
+	function seleccionarOpcion(){
 		var selectorValor = selector.value;
 		switch(selectorValor){
 			case "texto":
@@ -17,16 +25,14 @@ window.addEventListener("load", function(){
 				frase();
 				break;
 		}
-	});
-	
+	}
+
 	function texto(){
-		var contenedorTexto = document.createElement("div");
 		var inputTexto = document.createElement("input");
 		var textareaTexto = document.createElement("textarea");
 		var btnCerrar = document.createElement("button");
 		var btnPublicar = document.createElement("button");
 
-		contenedorTexto.setAttribute("id", "contenedor");
 		inputTexto.setAttribute("placeholder", "Título");
 		textareaTexto.setAttribute("placeholder", "Ingrese texto");
 		
@@ -38,22 +44,23 @@ window.addEventListener("load", function(){
 		btnCerrar.classList.add("btn-cerrar");
 		btnPublicar.classList.add("btn-publicar");
 
-		contenedorTexto.appendChild(inputTexto);
-		contenedorTexto.appendChild(textareaTexto);
-		contenedorTexto.appendChild(btnCerrar);
-		contenedorTexto.appendChild(btnPublicar);
+		container.appendChild(inputTexto);
+		container.appendChild(textareaTexto);
+		container.appendChild(btnCerrar);
+		container.appendChild(btnPublicar);
 
-		boxSelector.appendChild(contenedorTexto);
+		boxSelector.appendChild(container);
+
+		btnCerrar.addEventListener("click", cerrar);
+		btnPublicar.addEventListener("click", publicar);
 	}
 
 	function cita(){
-		var contenedorCita = document.createElement("div");
 		var textareaCita = document.createElement("textarea");
 		var inputCita = document.createElement("input");
 		var btnCerrar = document.createElement("button");
 		var btnPublicar = document.createElement("button");
 
-		contenedorCita.setAttribute("id", "contenedor-cita");
 		textareaCita.setAttribute("placeholder", "Ingrese una cita");
 		inputCita.setAttribute("placeholder", "Autor");
 
@@ -65,45 +72,47 @@ window.addEventListener("load", function(){
 		btnCerrar.classList.add("btn-cerrar");
 		btnPublicar.classList.add("btn-publicar");
 
-		contenedorCita.appendChild(textareaCita);
-		contenedorCita.appendChild(inputCita);
-		contenedorCita.appendChild(btnCerrar);
-		contenedorCita.appendChild(btnPublicar);
+		container.appendChild(textareaCita);
+		container.appendChild(inputCita);
+		container.appendChild(btnCerrar);
+		container.appendChild(btnPublicar);
 
-		boxSelector.appendChild(contenedorCita);
+		boxSelector.appendChild(container);
+
+		btnCerrar.addEventListener("click", cerrar);
+		btnPublicar.addEventListener("click", publicar);
 	}
 
 	function enlace(){
-		var contenedorEnlace = document.createElement("div");
 		var inputEnlace = document.createElement("input");
 		var btnCerrar = document.createElement("button");
 		var btnPublicar = document.createElement("button");
 
-		contenedorEnlace.setAttribute("id", "contenedor-enlace");
 		inputEnlace.setAttribute("placeholder", "Ingrese un enlace");
 
 		btnCerrar.textContent = "Cerrar";
 		btnPublicar.textContent = "Publicar";
 
-		textareaEnlace.classList.add("textarea-enlace");
+		inputEnlace.classList.add("textarea-enlace");
 		btnCerrar.classList.add("btn-cerrar");
 		btnPublicar.classList.add("btn-publicar");
 
-		contenedorEnlace.appendChild(textareaEnlace);
-		contenedorEnlace.appendChild(btnCerrar);
-		contenedorEnlace.appendChild(btnPublicar);
+		container.appendChild(inputEnlace);
+		container.appendChild(btnCerrar);
+		container.appendChild(btnPublicar);
 
-		boxSelector.appendChild(contenedorEnlace);
+		boxSelector.appendChild(container);
+
+		btnCerrar.addEventListener("click", cerrar);
+		btnPublicar.addEventListener("click", publicar);
 	}
 
 	function frase(){
-		var contenedorFrase = document.createElement("div");
 		var textareaFrase = document.createElement("textarea");
 		var inputFrase = document.createElement("input");
 		var btnCerrar = document.createElement("button");
 		var btnPublicar = document.createElement("button");
 
-		contenedorFrase.setAttribute("id", "contenedor-enlace");
 		textareaFrase.setAttribute("placeholder", "Ingrese una frase");
 		inputFrase.setAttribute("type", "color");
 
@@ -114,13 +123,50 @@ window.addEventListener("load", function(){
 		btnCerrar.classList.add("btn-cerrar");
 		btnPublicar.classList.add("btn-publicar");
 
-		contenedorFrase.appendChild(textareaFrase);
-		contenedorFrase.appendChild(inputFrase);
-		contenedorFrase.appendChild(btnCerrar);
-		contenedorFrase.appendChild(btnPublicar);
+		container.appendChild(textareaFrase);
+		container.appendChild(inputFrase);
+		container.appendChild(btnCerrar);
+		container.appendChild(btnPublicar);
 
-		boxSelector.appendChild(contenedorFrase);
+		boxSelector.appendChild(container);
+		btnCerrar.addEventListener("click", cerrar);
+		btnPublicar.addEventListener("click", publicar);
 	}
-});
 
-	
+	function cerrar(){
+		this.parentElement.remove();
+	}
+
+	function publicar(){
+		var h2 = document.createElement("h2");
+		var p = document.createElement("p");
+		var boxPubli = document.createElement("div");
+		var divHora = document.createElement("div");
+		var horaPubli = fechaPubli();
+		var btnEliminar = document.createElement("button");
+
+		var titulo = this.parentElement.children[0].value;
+		var texto = this.parentElement.children[1].value;
+
+		h2.innerText = titulo;
+		p.innerText = texto;
+		divHora.innerText = horaPubli;
+		btnEliminar.textContent = "Eliminar";
+
+		boxSelector.appendChild(containerPublicacion);
+		containerPublicacion.appendChild(boxPubli);
+		boxPubli.appendChild(h2);
+		boxPubli.appendChild(p);
+		boxPubli.appendChild(divHora);
+		boxPubli.appendChild(btnEliminar);
+
+		btnEliminar.addEventListener("click", cerrar);
+	}
+
+	function fechaPubli(){
+		var fecha = new Date();
+		var hora = fecha.getHours();
+		var minuto = fecha.getMinutes();
+		var segundo = fecha.getSeconds();
+		return hora + ":" + minuto + ":" + segundo;
+	}
