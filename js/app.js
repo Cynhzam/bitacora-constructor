@@ -26,6 +26,15 @@ window.addEventListener("load", cargarPagina);
 				break;
 		}
 	}
+
+	function Post(textarea, horaPublicacion){
+	this.textarea = textarea;
+	this.horaPublicacion = horaPublicacion;
+	this.cerrar = function(){
+		
+	}
+		
+	}
  
 	function texto(){
 		var container = document.createElement("div");
