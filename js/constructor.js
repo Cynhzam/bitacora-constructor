@@ -1,4 +1,5 @@
 function Post(textarea, horaPublicacion){
-	this textarea = textarea;
-	this horaPublicacion = horaPublicacion;
+	this.input = input;
+	this.horaPublicacion = horaPublicacion;
+	this.cerrar = function()
 }

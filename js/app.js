@@ -5,6 +5,12 @@ window.addEventListener("load", cargarPagina);
 	var containerOpcion = document.createElement("div");
 	var containerPublicacion = document.createElement("div");
 
+	var container = document.createElement("div");
+	var input = document.createElement("input");
+	var textarea = document.createElement("textarea");
+	var btnCerrar = document.createElement("button");
+	var btnPublicar = document.createElement("button");
+
 	function cargarPagina(){
 		selector.addEventListener("change", seleccionarOpcion);
 	}
@@ -27,38 +33,33 @@ window.addEventListener("load", cargarPagina);
 		}
 	}
 
-	function Post(textarea, horaPublicacion){
-	this.textarea = textarea;
+	function Post(input, horaPublicacion){
+	this.input = input;
 	this.horaPublicacion = horaPublicacion;
 	this.cerrar = function(){
-		
+
 	}
 		
 	}
  
 	function texto(){
-		var container = document.createElement("div");
-		var inputTexto = document.createElement("input");
-		var textareaTexto = document.createElement("textarea");
-		var btnCerrar = document.createElement("button");
-		var btnPublicar = document.createElement("button");
 
 		container.setAttribute("id", "container")
-		inputTexto.setAttribute("placeholder", "Título");
-		textareaTexto.setAttribute("placeholder", "Ingrese texto");
+		input.setAttribute("placeholder", "Título");
+		textarea.setAttribute("placeholder", "Ingrese texto");
 		
 		btnCerrar.textContent = "Cerrar";
 		btnPublicar.textContent = "Publicar"
 
-		inputTexto.classList.add("input-texto");
-		textareaTexto.classList.add("textarea-texto");
+		input.classList.add("input-texto");
+		textarea.classList.add("textarea-texto");
 		btnCerrar.classList.add("btn-cerrar");
 		btnPublicar.classList.add("btn-publicar");
 
 		boxSelector.insertBefore(containerOpcion, boxSelector.children[1]);
 		containerOpcion.appendChild(container);
-		container.appendChild(inputTexto);
-		container.appendChild(textareaTexto);
+		container.appendChild(input);
+		container.appendChild(textarea);
 		container.appendChild(btnCerrar);
 		container.appendChild(btnPublicar);
 
@@ -67,28 +68,23 @@ window.addEventListener("load", cargarPagina);
 	}
 
 	function cita(){
-		var container = document.createElement("div");
-		var textareaCita = document.createElement("textarea");
-		var inputCita = document.createElement("input");
-		var btnCerrar = document.createElement("button");
-		var btnPublicar = document.createElement("button");
 
 		container.setAttribute("id", "container");
-		textareaCita.setAttribute("placeholder", "Ingrese una cita");
-		inputCita.setAttribute("placeholder", "Autor");
+		textarea.setAttribute("placeholder", "Ingrese una cita");
+		input.setAttribute("placeholder", "Autor");
 
 		btnCerrar.textContent = "Cerrar";
 		btnPublicar.textContent = "Publicar";
 
-		textareaCita.classList.add("textarea-cita");
-		inputCita.classList.add("input-cita");
+		textarea.classList.add("textarea-cita");
+		input.classList.add("input-cita");
 		btnCerrar.classList.add("btn-cerrar");
 		btnPublicar.classList.add("btn-publicar");
 
 		boxSelector.insertBefore(containerOpcion, boxSelector.children[1]);
 		containerOpcion.appendChild(container);
-		container.appendChild(textareaCita);
-		container.appendChild(inputCita);
+		container.appendChild(textarea);
+		container.appendChild(input);
 		container.appendChild(btnCerrar);
 		container.appendChild(btnPublicar);
 
@@ -97,24 +93,20 @@ window.addEventListener("load", cargarPagina);
 	}
 
 	function enlace(){
-		var container = document.createElement("div");
-		var inputEnlace = document.createElement("input");
-		var btnCerrar = document.createElement("button");
-		var btnPublicar = document.createElement("button");
 
 		container.setAttribute("id", "container");
-		inputEnlace.setAttribute("placeholder", "Ingrese un enlace");
+		input.setAttribute("placeholder", "Ingrese un enlace");
 
 		btnCerrar.textContent = "Cerrar";
 		btnPublicar.textContent = "Publicar";
 
-		inputEnlace.classList.add("textarea-enlace");
+		input.classList.add("textarea-enlace");
 		btnCerrar.classList.add("btn-cerrar");
 		btnPublicar.classList.add("btn-publicar");
 
 		boxSelector.insertBefore(containerOpcion, boxSelector.children[1]);
 		containerOpcion.appendChild(container);
-		container.appendChild(inputEnlace);
+		container.appendChild(input);
 		container.appendChild(btnCerrar);
 		container.appendChild(btnPublicar);
 
@@ -123,27 +115,22 @@ window.addEventListener("load", cargarPagina);
 	}
 
 	function frase(){
-		var container = document.createElement("div");
-		var textareaFrase = document.createElement("textarea");
-		var inputFrase = document.createElement("input");
-		var btnCerrar = document.createElement("button");
-		var btnPublicar = document.createElement("button");
 
 		container.setAttribute("id", "container");
-		textareaFrase.setAttribute("placeholder", "Ingrese una frase");
-		inputFrase.setAttribute("type", "color");
+		textarea.setAttribute("placeholder", "Ingrese una frase");
+		input.setAttribute("type", "color");
 
 		btnCerrar.textContent = "Cerrar";
 		btnPublicar.textContent = "Publicar";
 
-		textareaFrase.classList.add("textarea-frase");
+		textarea.classList.add("textarea-frase");
 		btnCerrar.classList.add("btn-cerrar");
 		btnPublicar.classList.add("btn-publicar");
 
 		boxSelector.insertBefore(containerOpcion, boxSelector.children[1]);
 		containerOpcion.appendChild(container);
-		container.appendChild(textareaFrase);
-		container.appendChild(inputFrase);
+		container.appendChild(textarea);
+		container.appendChild(input);
 		container.appendChild(btnCerrar);
 		container.appendChild(btnPublicar);
 
@@ -180,18 +167,18 @@ window.addEventListener("load", cargarPagina);
 		texto = "";
 	}
 	
-	function cerrar(){
-		this.parentElement.classList.add("ocultar");
-	}
-
-	function eliminar(){
-		this.parentElement.remove();
-	}
-
 	function fechaPubli(){
 		var fecha = new Date();
 		var hora = fecha.getHours();
 		var minuto = fecha.getMinutes();
 		var segundo = fecha.getSeconds();
 		return hora + ":" + minuto + ":" + segundo;
+	}
+	
+	function cerrar(){
+		this.parentElement.classList.add("ocultar");
+	}
+
+	function eliminar(){
+		this.parentElement.remove();
 	}
